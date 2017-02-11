@@ -15,7 +15,7 @@
                 <div id="map"></div>
 		<script>
                         function initMap() {
-                        	var data;
+                        	//var data;
 				
 				var newYork = new google.maps.LatLng(40.730610, -73.935242);
 
@@ -24,7 +24,7 @@
 					zoom: 10,
 					//mapTypeId: 'satellite'
 				});
-
+				/*
 				$(document).ready(function() {
 					$.ajax({
 						type: "GET",
@@ -36,32 +36,45 @@
 						}
 					});
 				});
-				
+				*/
+				var url = "http://data.insideairbnb.com/united-states/ny/new-york-city/2016-12-03/visualisations/listings.csv";	
 				var heatMapData = [];
-				var parsed = Papa.parse(data, {header: true});
-				var objList = parsed['data'];
-				//var objList = $.csv.toObjects(data);
-				console.log(objList.length);
-				for(i = 0; i < objList.length; i++) {
-					var price = objList[i]['price'];
-					if(price>1000) continue;
-					var latitude = objList[i]['latitude'];
-					var longitude = objList[i]['longitude'];
-					
-					var obj = {location: new google.maps.LatLng(latitude, longitude), weight: price};
-					heatMapData.push(obj);
-				
-				}
-				
-
-				var heatmap = new google.maps.visualization.HeatmapLayer({
-					data: heatMapData,
-					radius: 2,
-					maxIntensity: 15
+				var parsed;
+				Papa.parse(url, 
+				{	 
+					download:true,
+					header: true,
+					complete: function(results) {
+							parsed = results;
+							console.log(parsed);
+							var objList = parsed['data'];
+							//var objList = $.csv.toObjects(data);
+							//console.log(objList.length);
+							for(i = 0; i < objList.length; i++) {
+								  var price = objList[i]['price'];
+								  if(price>1000) continue;
+								  var latitude = objList[i]['latitude'];
+								  var longitude = objList[i]['longitude'];
+			 
+								  var obj = {location: new google.maps.LatLng(latitude, longitude), weight: price};
+								  heatMapData.push(obj);
+			 
+							  }
+			 
+			 
+							  var heatmap = new google.maps.visualization.HeatmapLayer({
+								  data: heatMapData,
+								  radius: 2,
+								  maxIntensity: 15
+							  });
+							  heatmap.setMap(map);
+						}	
 				});
-				heatmap.setMap(map);
 			}
                 </script>
+		<!--<script type="text/javascript" src="js/jquery-csv/src/jquery.csv.js"></script>
+                <script type="text/javascript" src="js/PapaParse/papaparse.min.js"></script>-->
+
 		<script type="text/javascript" src="http://localhost:8000/js/jquery-csv/src/jquery.csv.js"></script>
                 <script type="text/javascript" src="http://localhost:8000/js/PapaParse/papaparse.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
