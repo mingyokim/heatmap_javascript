@@ -1,8 +1,7 @@
 how to run:
-	- go to javascript/ and type "python -m SimpleHTTPServer"
-	- go to localhost:8000/new_york_heatmap.html
+	- run new_york_heatmap.html
 
 things to implement:
-	- independence from localhost to be able to put it on website
-	- 
+	- variables: city, time
+	- attribtutes: number of reviews, availability, entire home/apt vs private
 	
