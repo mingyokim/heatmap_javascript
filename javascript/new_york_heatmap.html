@@ -22,8 +22,10 @@
 				map = new google.maps.Map(document.getElementById('map'), {
 					center: newYork,
 					zoom: 10,
-					//mapTypeId: 'satellite'
+					mapTypeId: 'satellite'
 				});
+				map.data.loadGeoJson('http://data.insideairbnb.com/united-states/ny/new-york-city/2016-12-03/visualisations/neighbourhoods.geojson');
+				map.data.setStyle({fillOpacity: 0.01, strokeWeight: 1.75, strokeOpacity: 1, strokeColor: 'black'});
 				/*
 				$(document).ready(function() {
 					$.ajax({
@@ -64,8 +66,8 @@
 			 
 							  var heatmap = new google.maps.visualization.HeatmapLayer({
 								  data: heatMapData,
-								  radius: 2,
-								  maxIntensity: 15
+								  radius: 7,
+								  maxIntensity: 800
 							  });
 							  heatmap.setMap(map);
 						}	

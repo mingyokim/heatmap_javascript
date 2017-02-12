@@ -4,4 +4,4 @@ how to run:
 things to implement:
 	- variables: city, time
 	- attribtutes: number of reviews, availability, entire home/apt vs private
-	
+	- neighborhoods: geojson	
