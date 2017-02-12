@@ -53,12 +53,12 @@
 							//var objList = $.csv.toObjects(data);
 							//console.log(objList.length);
 							for(i = 0; i < objList.length; i++) {
-								  var price = objList[i]['price'];
-								  if(price>1000) continue;
+								  //var price = objList[i]['price'];
+								  //if(price>1000) continue;
 								  var latitude = objList[i]['latitude'];
 								  var longitude = objList[i]['longitude'];
-			 
-								  var obj = {location: new google.maps.LatLng(latitude, longitude), weight: price};
+			 					var obj = new google.maps.LatLng(latitude, longitude);
+								  //var obj = {location: new google.maps.LatLng(latitude, longitude), weight: price};
 								  heatMapData.push(obj);
 			 
 							  }
@@ -67,7 +67,7 @@
 							  var heatmap = new google.maps.visualization.HeatmapLayer({
 								  data: heatMapData,
 								  radius: 7,
-								  maxIntensity: 800
+								  maxIntensity:25
 							  });
 							  heatmap.setMap(map);
 						}	
